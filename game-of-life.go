@@ -1,19 +1,29 @@
 package main
 
 import "fmt"
+import "strings"
 
+func print_board(board [][]string, rows int, columns int) {
+	for row := 0; row < rows; row++ {
+		fmt.Println(strings.Join(board[row], " "))
+	}
+}
 
 func main() {
 	fmt.Println("Game of Life!")
-	const x_dimension = 2
-	const y_dimension = 2
-	const dead_space = "O"
+
+	const rows = 50
+	const columns = 50
+	const dead_space = "-"
 	const alive_space = "X"
-	var board [x_dimension][y_dimension]string
-	for x := 0; x < x_dimension; x ++ {
-		for y := 0; y < y_dimension; y ++ {
-	    	board[x][y] = dead_space
-	    }
+
+	board := make([][]string, rows)
+
+	for row := 0; row < rows; row++ {
+		board[row] = make([]string, columns)
+		for column := 0; column < columns; column++ {
+			board[row][column] = dead_space
+		}
 	}
-	fmt.Println(board)
+	print_board(board, rows, columns)
 }
