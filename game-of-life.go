@@ -7,8 +7,15 @@ import (
 	"math/rand"
 )
 
-func print_board(board [][]string, rows int, columns int) {
-	for row := 0; row < rows; row++ {
+const (
+	Dead_space = "-"
+	Alive_space = "X"
+	Rows = 40
+	Columns = 40
+)
+
+func print_board(board [][]string) {
+	for row := 0; row < Rows; row++ {
 		fmt.Println(strings.Join(board[row], " "))
 	}
 }
@@ -16,17 +23,13 @@ func print_board(board [][]string, rows int, columns int) {
 func main() {
 	fmt.Println("Game of Life!")
 
-	const rows = 40
-	const columns = 40
-	const dead_space = "-"
-	const alive_space = "X"
-	choices := []string{dead_space, alive_space}
+	choices := []string{Dead_space, Alive_space}
 
-	board := make([][]string, rows)
+	board := make([][]string, Rows)
 
-	for row := 0; row < rows; row++ {
-		board[row] = make([]string, columns)
-		for column := 0; column < columns; column++ {
+	for row := 0; row < Rows; row++ {
+		board[row] = make([]string, Columns)
+		for column := 0; column < Columns; column++ {
 			random_choice := choices[rand.Intn(len(choices))]
 			board[row][column] = random_choice
 		}
@@ -34,7 +37,7 @@ func main() {
 
 	for turn := 0; ; turn++ {
 		fmt.Printf("Turn %v\n", turn)
-		print_board(board, rows, columns)
+		print_board(board)
 		time.Sleep(1 * time.Second)
 	}
 }
