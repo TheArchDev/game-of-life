@@ -20,6 +20,21 @@ func print_board(board [][]string) {
 	}
 }
 
+func calculate_state (board [][]string, row int, column int) string {
+	neighbours := [][]int{
+		{ row - 1, column - 1 },
+		{ row - 1, column },
+		{ row - 1, column + 1},
+		{ row, column - 1},
+		{ row, column + 1},
+		{ row + 1, column - 1 },
+		{ row + 1, column },
+		{ row + 1, column + 1},
+	}
+	fmt.Println(neighbours)
+	return Dead_space
+}
+
 func main() {
 	fmt.Println("Game of Life!")
 	rand.Seed(time.Now().Unix())
@@ -41,5 +56,11 @@ func main() {
 		fmt.Printf("Turn %v\n", turn)
 		print_board(board)
 		time.Sleep(1 * time.Second)
+		for row := 0; row < Rows; row++ {
+			for column := 0; column < Columns; column++ {
+				new_state := calculate_state(board, row, column)
+				board[row][column] = new_state
+			}
+		}
 	}
 }
