@@ -21,7 +21,7 @@ func print_board(board [][]string) {
 }
 
 func calculate_state (board [][]string, row int, column int) string {
-	neighbours := [][]int{
+	neighbours := [8][2]int{
 		{ row - 1, column - 1 },
 		{ row - 1, column },
 		{ row - 1, column + 1},
