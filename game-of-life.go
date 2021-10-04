@@ -22,6 +22,7 @@ func print_board(board [][]string) {
 
 func main() {
 	fmt.Println("Game of Life!")
+	rand.Seed(time.Now().Unix())
 
 	choices := []string{Dead_space, Alive_space}
 
@@ -30,7 +31,8 @@ func main() {
 	for row := 0; row < Rows; row++ {
 		board[row] = make([]string, Columns)
 		for column := 0; column < Columns; column++ {
-			random_choice := choices[rand.Intn(len(choices))]
+			random_index := rand.Intn(len(choices))
+			random_choice := choices[random_index]
 			board[row][column] = random_choice
 		}
 	}
