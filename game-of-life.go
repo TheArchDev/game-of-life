@@ -1,8 +1,10 @@
 package main
 
-import "fmt"
-import "strings"
-import "time"
+import (
+	"fmt"
+	"strings"
+	"time"
+)
 
 func print_board(board [][]string, rows int, columns int) {
 	for row := 0; row < rows; row++ {
