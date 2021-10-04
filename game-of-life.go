@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 import "strings"
+import "time"
 
 func print_board(board [][]string, rows int, columns int) {
 	for row := 0; row < rows; row++ {
@@ -12,8 +13,8 @@ func print_board(board [][]string, rows int, columns int) {
 func main() {
 	fmt.Println("Game of Life!")
 
-	const rows = 50
-	const columns = 50
+	const rows = 40
+	const columns = 40
 	const dead_space = "-"
 	const alive_space = "X"
 
@@ -25,5 +26,10 @@ func main() {
 			board[row][column] = dead_space
 		}
 	}
-	print_board(board, rows, columns)
+
+	for turn := 0; ; turn++ {
+		fmt.Printf("Turn %v\n", turn)
+		print_board(board, rows, columns)
+		time.Sleep(1 * time.Second)
+	}
 }
