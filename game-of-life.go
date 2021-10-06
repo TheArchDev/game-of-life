@@ -10,15 +10,42 @@ import (
 const (
 	Dead_space  = "-"
 	Alive_space = "X"
-	Rows        = 40
-	Columns     = 40
+	Rows        = 20
+	Columns     = 20
 )
 
 func print_board(board [][]string) {
+	colorReset := "\033[0m"
 	for row := 0; row < Rows; row++ {
-		fmt.Println(strings.Join(board[row], " "))
+		fmt.Println(string(colorReset), strings.Join(board[row], " "))
 	}
 }
+
+func print_board_int(board [][]int) {
+	// for row := 0; row < Rows; row++ {
+	// 	fmt.Println(strings.Join(board[row], " "))
+	// }
+	colorRed := "\033[31m"
+	colorGreen := "\033[32m"
+	for row := 0; row < Rows; row++ {
+		for column := 0; column < Columns; column++ {
+			if board[row][column] == 3 {
+				fmt.Print(string(colorRed), board[row][column])
+			} else {
+				fmt.Print(string(colorGreen), board[row][column])
+			}
+		}
+		fmt.Println()
+	}
+}
+
+// func print_board_int_new(board [][]int) {
+// 	for row := 0; row < Rows; row++ {
+// 		new_row := []string
+// 		for item
+// 		fmt.Println(strings.Join(board[row], " "))
+// 	}
+// }
 
 func count_neighbors(board [][]string) [][]int {
 	counts := make([][]int, Rows)
@@ -102,6 +129,8 @@ func main() {
 		clear_screen()
 
 		counts := count_neighbors(board)
+
+		print_board_int(counts)
 
 		for row := range board {
 			for column := range board[row] {
